@@ -99,8 +99,7 @@
     },
     "passive": {
       "passive": true,
-      "standalone": true,
-      "interval": 1
+      "standalone": true
     }
   },
   "client": {
