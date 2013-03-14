@@ -96,6 +96,11 @@
     "merger": {
       "command": "this will be overwritten",
       "interval": 60
+    },
+    "passive": {
+      "passive": true,
+      "standalone": true,
+      "interval": 1
     }
   },
   "client": {

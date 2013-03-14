@@ -18,6 +18,7 @@ describe 'Sensu::Settings' do
     @settings.handler_exists?('file').should be_true
     @settings.handler_exists?('nonexistent').should be_false
     @settings.check_exists?('merger').should be_true
+    @settings.check_exists?('passive').should be_true
     @settings[:checks][:merger][:command].should eq('this will be overwritten')
     @settings.load_directory(options[:config_dir])
     @settings[:checks][:merger][:command].should eq('echo -n merger')

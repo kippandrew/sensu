@@ -218,7 +218,7 @@ module Sensu
     def setup_standalone
       @logger.debug('scheduling standalone checks')
       standard_checks = @settings.checks.select do |check|
-        check[:standalone]
+        check[:standalone] unless check.has_key?(:passive)
       end
       extension_checks = @extensions.checks.select do |check|
         check[:standalone] && check[:interval].is_a?(Integer)

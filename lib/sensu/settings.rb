@@ -210,11 +210,20 @@ module Sensu
     end
 
     def validate_check(check)
-      unless check[:interval].is_a?(Integer) && check[:interval] > 0
-        invalid_check(check, 'check is missing interval')
-      end
-      unless check[:command].is_a?(String)
-        invalid_check(check, 'check is missing command')
+      unless check.has_key?(:passive)
+        unless check[:interval].is_a?(Integer) && check[:interval] > 0
+          invalid_check(check, 'check is missing interval')
+        end
+        unless check[:command].is_a?(String)
+          invalid_check(check, 'check is missing command')
+        end
+      else
+        unless !!check[:passive] == check[:passive]
+          invalid_check(check, 'check passive must be boolean')
+        end
+        if check.has_key?(:command)
+          invalid_check(check, 'passive checks should not have a command')
+        end
       end
       if check.has_key?(:standalone)
         unless !!check[:standalone] == check[:standalone]
